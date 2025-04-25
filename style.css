@@ -1,80 +1,95 @@
 body {
-  font-family: 'Press Start 2P', cursive;
-  background: url('assets/sonicbg.png') repeat center center fixed;
-  background-size: cover;
-  color: #fff;
-  text-align: center;
   margin: 0;
-  padding: 2rem;
-  image-rendering: pixelated;
+  font-family: 'Press Start 2P', cursive;
+  background: url("assets/sonicbg.png") no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-
 .container {
-  max-width: 600px;
-  margin: auto;
-  background-color: rgba(0, 0, 0, 0.7);
   padding: 2rem;
+  max-width: 700px;
+  width: 90%;
+  background-color: rgba(0, 0, 0, 0.6);
   border-radius: 20px;
-  box-shadow: 0 0 20px #00f2ff;
+  box-shadow: 0 0 20px #00c8ff;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #00ffff;
+  text-shadow: 2px 2px #000;
 }
 
 .banner {
   max-width: 100%;
   height: auto;
   margin-bottom: 1rem;
-  border: 3px solid #f7c000;
   border-radius: 12px;
 }
 
 #game-box {
-  margin: 2rem auto;
+  border: 5px dashed white;
   padding: 3rem;
-  border-radius: 20px;
-  border: 4px dashed #f7c000;
-  background-color: #222;
-  transition: background-color 0.3s;
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 500px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #ffffff;
+  text-align: center;
+}
+
+#game-box p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+#game-box.idle {
+  background-color: #1e90ff; 
 }
 
 #game-box.waiting {
-  background-color: #444;
+  background-color: #ff3b3b; 
+}
+
+#game-box.ready {
+  background-color: #00c851;
+}
+
+#game-box.early {
+  background-color: #ff8800; 
+}
+
+#result {
+  font-size: 1rem;
+  margin-top: 1rem;
+  color: #ffff88;
+  text-shadow: 1px 1px #000;
 }
 
 #thumbsup {
   margin-top: 1rem;
   max-width: 150px;
   display: none;
+  animation: popIn 0.5s ease;
 }
 
-
-#game-box.ready {
-  background-color: #00ff7f;
-}
-
-#game-box.early {
-  background-color: #ff3333;
-}
-
-button {
-  padding: 12px 30px;
-  font-size: 1.1rem;
-  font-family: 'Press Start 2P', cursive;
-  border: none;
-  border-radius: 12px;
-  background-color: #f7c000;
-  color: #000;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
-  margin-top: 1rem;
-}
-
-button:hover {
-  background-color: #ffdf00;
-  transform: scale(1.05);
-}
-
-#result {
-  margin-top: 2rem;
-  font-size: 1.1rem;
+/* animation */
+@keyframes popIn {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
