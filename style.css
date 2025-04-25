@@ -1,12 +1,14 @@
 body {
   font-family: 'Press Start 2P', cursive;
-  background: url('https://i.imgur.com/DRqGzvK.png') repeat; /* Green Hill Zone-style */
+  background: url('assets/sonicbg.png') repeat center center fixed;
+  background-size: cover;
   color: #fff;
   text-align: center;
   margin: 0;
   padding: 2rem;
   image-rendering: pixelated;
 }
+
 
 .container {
   max-width: 600px;
@@ -38,6 +40,13 @@ body {
 #game-box.waiting {
   background-color: #444;
 }
+
+#thumbsup {
+  margin-top: 1rem;
+  max-width: 150px;
+  display: none;
+}
+
 
 #game-box.ready {
   background-color: #00ff7f;
