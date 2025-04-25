@@ -1,11 +1,10 @@
 const gameBox = document.getElementById("game-box");
 const message = document.getElementById("message");
 const result = document.getElementById("result");
-const startBtn = document.getElementById("start-btn");
 const thumbsupImg = document.getElementById("thumbsup");
 
 let startTime, timeoutId;
-let gameState = "waiting";
+let gameState = "idle";
 
 const ranks = [
   { maxTime: 100, rank: "🌟 Super Sonic" },
@@ -15,7 +14,7 @@ const ranks = [
   { maxTime: Infinity, rank: "😴 Big the Cat" }
 ];
 
-function resetGame() {
+function startRound() {
   gameBox.className = "waiting";
   message.textContent = 'Wait for "GO!" then click!';
   result.textContent = "";
@@ -32,24 +31,22 @@ function resetGame() {
 }
 
 gameBox.addEventListener("click", () => {
-  if (gameState === "waiting") {
+  if (gameState === "idle") {
+    startRound();
+  } else if (gameState === "waiting") {
     clearTimeout(timeoutId);
     gameBox.className = "early";
-    message.textContent = "Too soon! Wait for GO!";
+    message.textContent = "Too soon! 🛑 Wait for GO!";
     result.textContent = "Penalty: Try again.";
-    gameState = "clicked";
+    gameState = "idle";
     thumbsupImg.style.display = "none";
   } else if (gameState === "ready") {
     const reactionTime = Date.now() - startTime;
     const rank = ranks.find(r => reactionTime <= r.maxTime);
     message.textContent = `Your time: ${reactionTime} ms`;
     result.textContent = `🏁 Rank: ${rank.rank}`;
-    gameBox.className = "waiting";
-    gameState = "clicked";
+    gameBox.className = "idle";
+    gameState = "idle";
     thumbsupImg.style.display = "inline";
   }
-});
-
-startBtn.addEventListener("click", () => {
-  resetGame();
 });
