@@ -4,7 +4,7 @@ const result = document.getElementById("result");
 const startBtn = document.getElementById("start-btn");
 
 let startTime, timeoutId;
-let gameState = "waiting"; // "waiting", "ready", "clicked"
+let gameState = "waiting";
 
 const ranks = [
   { maxTime: 100, rank: "🌟 Super Sonic" },
@@ -34,13 +34,13 @@ gameBox.addEventListener("click", () => {
     clearTimeout(timeoutId);
     gameBox.className = "early";
     message.textContent = "Too soon! Wait for GO!";
-    result.textContent = "Try again.";
+    result.textContent = "Penalty: Try again.";
     gameState = "clicked";
   } else if (gameState === "ready") {
     const reactionTime = Date.now() - startTime;
     const rank = ranks.find(r => reactionTime <= r.maxTime);
-    message.textContent = `Your reaction time: ${reactionTime} ms`;
-    result.textContent = `Rank: ${rank.rank}`;
+    message.textContent = `Your time: ${reactionTime} ms`;
+    result.textContent = `🏁 Rank: ${rank.rank}`;
     gameBox.className = "waiting";
     gameState = "clicked";
   }
